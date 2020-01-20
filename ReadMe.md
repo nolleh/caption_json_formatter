@@ -53,15 +53,14 @@ func main() {
             Response Response `json:"response"`
         }
     
-        message := Message { Request{ "/user/123456/balance", "GET" },
-            Response{123456, 1000} }
+        message := Message { Request{ "/user/123456/balance", "GET" }, Response{123456, 1000} }
 
         /* in current logrus implementation, there isn't way for set Custom Entry
          * hook or formatter, doesn't have opportunity for marshaling message.
          * so before pull request was made, you need to use custom function to use extended entry.
          */
 
-        Log().DebugC("description: hello this is nolleh!", message)
+        Log().Debug(message)
 }
 ```
 
@@ -101,7 +100,6 @@ not like other formatters doing. (like below)
 ```
 
 or 
-
 
 ```
 { "time": "2020-01-20T16:46:08.7452971+09:00", "msg": {/"request/": { /"headers/": { /"content-type/": /"application/json/" }, /"method/": /"GET/", /"route/": /"/user/{userId}/balance/", /"url/": /"/user/123456/balance/" }, /"response/": { /"body/": { /"userId/": 123456, /"balance/": 1000 } }
