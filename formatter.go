@@ -1,4 +1,4 @@
-package formatter
+package caption_json_formatter
 
 import (
 	"bytes"

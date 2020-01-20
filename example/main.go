@@ -1,13 +1,16 @@
 package main
 
 import (
-	"github.com/nolleh/caption-json-formatter"
-	"github.com/sirupsen/logrus"
 	"log"
 	"os"
+
+	"caption_json_formatter"
+
+	"github.com/sirupsen/logrus"
 )
+
 var (
-	logger = NewLogger()
+	logger  = NewLogger()
 	logger2 = NewLogger2()
 )
 
@@ -22,7 +25,7 @@ func NewLogger() *logrus.Logger {
 	logger := logrus.New()
 	logger.Level = logrus.TraceLevel
 
-	logger.SetFormatter(&caption_json_formatter.Formatter{ PrettyPrint: true, CustomCaption: "nollehLog" })
+	logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true, CustomCaption: "nollehLog"})
 	return logger
 }
 
@@ -33,39 +36,38 @@ func NewLogger2() *logrus.Logger {
 	logger := logrus.New()
 	logger.Level = logrus.TraceLevel
 
-	logger.SetFormatter(&caption_json_formatter.Formatter{ CustomCaption: JO{"name":"nolleh", "say":"hello"} })
+	logger.SetFormatter(&caption_json_formatter.Formatter{CustomCaption: JO{"name": "nolleh", "say": "hello"}})
 	return logger
 }
 
 func Log() *caption_json_formatter.Entry {
-	return &caption_json_formatter.Entry{ Entry: logrus.NewEntry(logger) }
+	return &caption_json_formatter.Entry{Entry: logrus.NewEntry(logger)}
 }
 
 func Log2() *caption_json_formatter.Entry {
-	return &caption_json_formatter.Entry{ Entry: logrus.NewEntry(logger2) }
+	return &caption_json_formatter.Entry{Entry: logrus.NewEntry(logger2)}
 }
 
 func main() {
 	type Request struct {
-		Url string `json:"url"`
+		Url    string `json:"url"`
 		Method string `json:"method"`
 	}
 	type Response struct {
-		User int `json:"user"`
+		User    int `json:"user"`
 		Balance int `json:"balance"`
 	}
 	type Message struct {
-		Request Request `json:"request"`
+		Request  Request  `json:"request"`
 		Response Response `json:"response"`
 	}
 
-	message := Message { Request{ "/user/123456/balance", "GET" },
-		Response{123456, 1000} }
+	message := Message{Request{"/user/123456/balance", "GET"},
+		Response{123456, 1000}}
 
 	// without entry, you can't get json formatted message...
 	// output: 2020-01-20T18:08:12.6077798+09:00 [DEBUG] [nollehLog] {{/user/123456/balance GET} {123456 1000}}
 	logger.Debug(message)
-
 
 	/* in current logrus implementation, there isn't way for set Custom Entry.
 	 * hook or formatter, doesn't have opportunity for marshaling message.
@@ -75,7 +77,7 @@ func main() {
 	Log().Trace("trace")
 
 	//  2020-01-20T18:08:12.8127822+09:00 [DEBUG] [{"name":"nolleh","say":"hello"}] {"key":"value"}
-	Log2().Debug(map[string]interface{}{ "key": "value"})
+	Log2().Debug(map[string]interface{}{"key": "value"})
 
 	// 2020-01-20T18:08:12.8127822+09:00 [INFO] [nollehLog] {
 	// "request": {

@@ -2,6 +2,7 @@ package caption_json_formatter
 
 import (
 	"fmt"
+
 	"github.com/sirupsen/logrus"
 )
 
