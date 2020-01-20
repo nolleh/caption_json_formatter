@@ -14,7 +14,7 @@ default available caption is
 
 
 #### Source
-initalization
+* initalization
 ```go
 // initialize log
 var (
@@ -36,7 +36,7 @@ func Log() *caption_json_formatter.Entry {
 }
 ```
 
-printLog
+* printLog
 ```go
 func main() {
 
