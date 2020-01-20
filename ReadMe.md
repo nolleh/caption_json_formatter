@@ -10,7 +10,7 @@ default available caption is
 
 #### OutPut  
 
-<img src="docs/images/example_01.png" alt="example" width="1250" height="484"/>
+<img src="docs/images/example_02.png" alt="example" width="800" height="488"/>
 
 
 #### Source
@@ -27,8 +27,6 @@ func NewLogger() *logrus.Logger {
 
 	logger := logrus.New()
 	logger.Level = logrus.TraceLevel
-	//entry := caption_json_formatter.Entry{ Entry: logrus.NewEntry(logger) }
-	//logger.SetFormatter(&caption_json_formatter.Formatter{Entry: &entry, PrettyPrint: true })
 	logger.SetFormatter(&caption_json_formatter.Formatter{ PrettyPrint: true })
 	return logger
 }
