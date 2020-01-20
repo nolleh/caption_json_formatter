@@ -1,4 +1,4 @@
-module github.com/nolleh/caption-json-formatter
+module caption_json_formatter
 
 go 1.12
 
