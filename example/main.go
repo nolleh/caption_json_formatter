@@ -1,7 +1,7 @@
 package main
 
 import (
-	"caption_json_formatter"
+	"github.com/nolleh/caption-json-formatter"
 	"github.com/sirupsen/logrus"
 	"log"
 	"os"
