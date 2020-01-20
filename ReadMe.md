@@ -3,7 +3,7 @@ logrus's 'message' json formatter with human-readable caption added.
 default available caption is 
 
 > * timestamp
-> * file / lineNumber / function
+> * logLevel
 >
 
 ### Example 
