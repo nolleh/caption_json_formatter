@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"caption_json_formatter"
+	"github.com/nolleh/caption_json_formatter"
 
 	"github.com/sirupsen/logrus"
 )

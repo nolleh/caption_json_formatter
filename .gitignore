@@ -1,1 +1,2 @@
-caller.go
+*.exe
+.idea
