@@ -12,6 +12,7 @@ import (
 var (
 	logger  = NewLogger()
 	logger2 = NewLogger2()
+	logger3 = NewLogger3()
 )
 
 type (
@@ -26,6 +27,7 @@ func NewLogger() *logrus.Logger {
 	logger.Level = logrus.TraceLevel
 
 	logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true, CustomCaption: "nollehLog"})
+	// logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true})
 	return logger
 }
 
@@ -40,12 +42,27 @@ func NewLogger2() *logrus.Logger {
 	return logger
 }
 
+func NewLogger3() *logrus.Logger {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	log.SetOutput(os.Stdout)
+
+	logger := logrus.New()
+	logger.Level = logrus.TraceLevel
+
+	logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true})
+	return logger
+}
+
 func Log() *caption_json_formatter.Entry {
 	return &caption_json_formatter.Entry{Entry: logrus.NewEntry(logger)}
 }
 
 func Log2() *caption_json_formatter.Entry {
 	return &caption_json_formatter.Entry{Entry: logrus.NewEntry(logger2)}
+}
+
+func Log3() *caption_json_formatter.Entry {
+	return &caption_json_formatter.Entry{Entry: logrus.NewEntry(logger3)}
 }
 
 func main() {
@@ -108,4 +125,16 @@ func main() {
 
 	// 2020-01-20T18:08:12.8127822+09:00 [FATAL] [{"name":"nolleh","say":"hello"}] {"request":{"method":"GET","url":"/user/123456/balance"},"response":{"balance":1000,"user":123456}}
 	Log2().Fatal(message)
+
+	// 2020-01-20T18:08:12.8127822+09:00 [ERROR] {
+	// "request": {
+	// 		"method": "GET",
+	//  	"url": "/user/123456/balance"
+	// },
+	// "response": {
+	// 		"balance": 1000,
+	// 		"user": 123456
+	// }
+	//}
+	Log3().Info(message)
 }

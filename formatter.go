@@ -45,15 +45,18 @@ func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 	//	b.WriteString(prettierCaller(file, fc))
 	//}
 
-	b.WriteString("[")
-	captionStr := ""
-	if f.CustomCaptionPrettyPrint {
-		captionStr = marshalIndent(f.CustomCaption)
-	} else {
-		captionStr = marshal(f.CustomCaption)
+	if f.CustomCaption != nil {
+		
+		b.WriteString("[")
+		captionStr := ""
+		if f.CustomCaptionPrettyPrint {
+			captionStr = marshalIndent(f.CustomCaption)
+		} else {
+			captionStr = marshal(f.CustomCaption)
+		}
+		b.WriteString(captionStr)
+		b.WriteString("] ")
 	}
-	b.WriteString(captionStr)
-	b.WriteString("] ")
 
 	levelColor := getColorByLevel(entry.Level)
 	_, _ = fmt.Fprintf(b, "\x1b[%dm", levelColor)
