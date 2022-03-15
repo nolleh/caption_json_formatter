@@ -1,3 +1,6 @@
+[![Go Reference](https://pkg.go.dev/badge/github.com/nolleh/caption_json_formatter.svg)](https://pkg.go.dev/github.com/nolleh/caption_json_formatter)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## caption-json-formatter
 logrus's 'message' json formatter with human-readable caption added.  
 default available caption is 
