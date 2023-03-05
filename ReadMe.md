@@ -13,7 +13,14 @@ default available caption is
 
 #### OutPut  
 
-<img src="docs/images/example_01.png" alt="example"/>
+1. with custom caption (nollehLog)
+<img src="docs/images/example_01.png" alt="with caption"/>
+
+2. set logger option with unpretty print (off pritty print)  
+<img src="docs/images/example_02.png" alt="unpretty"/>
+
+3. set logger without custom caption and set as pretty  
+<img src="docs/images/example_03.png" alt="no caption"/>
 
 
 #### Source

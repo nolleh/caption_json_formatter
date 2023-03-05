@@ -126,7 +126,7 @@ func main() {
 	// 2020-01-20T18:08:12.8127822+09:00 [FATAL] [{"name":"nolleh","say":"hello"}] {"request":{"method":"GET","url":"/user/123456/balance"},"response":{"balance":1000,"user":123456}}
 	Log2().Fatal(message)
 
-	// 2020-01-20T18:08:12.8127822+09:00 [ERROR] {
+	// 2020-01-20T18:08:12.8127822+09:00 [INFO] {
 	// "request": {
 	// 		"method": "GET",
 	//  	"url": "/user/123456/balance"
