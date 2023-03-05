@@ -12,6 +12,7 @@ var (
 	logger  = NewLogger()
 	logger2 = NewLogger2()
 	logger3 = NewLogger3()
+	logger4 = NewJsonLogger()
 )
 
 type (
@@ -25,8 +26,8 @@ func NewLogger() *logrus.Logger {
 	logger := logrus.New()
 	logger.Level = logrus.TraceLevel
 
-	logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true, CustomCaption: "nollehLog", Colorize: false})
-	// logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true})
+	consoleLogger := caption_json_formatter.Console()
+	logger.SetFormatter(consoleLogger)
 	return logger
 }
 
@@ -37,7 +38,10 @@ func NewLogger2() *logrus.Logger {
 	logger := logrus.New()
 	logger.Level = logrus.TraceLevel
 
-	logger.SetFormatter(&caption_json_formatter.Formatter{CustomCaption: JO{"name": "nolleh", "say": "hello"}, Colorize: true})
+	consoleLogger := caption_json_formatter.Console()
+	// if you want to change default value, modify it.
+	consoleLogger.CustomCaption = JO{"name": "nolleh", "say": "hello"}
+	logger.SetFormatter(consoleLogger)
 	return logger
 }
 
@@ -48,7 +52,24 @@ func NewLogger3() *logrus.Logger {
 	logger := logrus.New()
 	logger.Level = logrus.TraceLevel
 
+	// if you no need syntatic sugar to generate formatter, you can do by yourself.
 	logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true, Colorize: true})
+	return logger
+}
+
+func NewJsonLogger() *logrus.Logger {
+
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+	log.SetOutput(os.Stdout)
+
+	logger := logrus.New()
+	logger.Level = logrus.TraceLevel
+
+	json := caption_json_formatter.Json()
+	// you can use this
+	// json.Colorize = true
+	// json.PrettyPrint = true
+	logger.SetFormatter(json)
 	return logger
 }
 
@@ -64,6 +85,9 @@ func Log3() *caption_json_formatter.Entry {
 	return &caption_json_formatter.Entry{Entry: logrus.NewEntry(logger3)}
 }
 
+func JsonLog() *caption_json_formatter.Entry {
+	return &caption_json_formatter.Entry{Entry: logrus.NewEntry(logger4)}
+}
 func main() {
 	type Request struct {
 		Url    string `json:"url"`
@@ -136,4 +160,7 @@ func main() {
 	// }
 	//}
 	Log3().Info(message)
+
+	//
+	JsonLog().Info(message)
 }
