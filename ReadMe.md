@@ -45,10 +45,11 @@ and also you can use this formatter for using simple json formatter (@since v0.2
 | key                      | ConsoleDefault | JsonDefault | description                                                                   |
 | ------------------------ | -------------- | ----------- | ----------------------------------------------------------------------------- |
 | TransportToJson          | false          | true        | if enabled, the whole log (include default caption) will be marshaled to json |
+| UseDefaultCaption        | true           | true        | if enabled, timestamp and loglevel will be added                              |
 | PrettyPrint              | true           | false       | if enabled, the message(object) is printed as pretty json                     |
 | CustomCaption            | nil            | nil         | if has value, then the caption is attatched before message(object)            |
 | CustomCaptionPrettyPrint | false          | false       | if enabled, the passed custom caption is printed as pretty json               |
-| Colorize                 | true           | false       | is enabled, add pre defined term color code by loglevel                       |
+| Colorize                 | true           | false       | if enabled, add predefined term color code by loglevel                        |
 
 #### Source
 
