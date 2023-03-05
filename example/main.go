@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/nolleh/caption_json_formatter"
-
 	"github.com/sirupsen/logrus"
 )
 
@@ -26,7 +25,7 @@ func NewLogger() *logrus.Logger {
 	logger := logrus.New()
 	logger.Level = logrus.TraceLevel
 
-	logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true, CustomCaption: "nollehLog"})
+	logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true, CustomCaption: "nollehLog", Colorize: false})
 	// logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true})
 	return logger
 }
@@ -38,7 +37,7 @@ func NewLogger2() *logrus.Logger {
 	logger := logrus.New()
 	logger.Level = logrus.TraceLevel
 
-	logger.SetFormatter(&caption_json_formatter.Formatter{CustomCaption: JO{"name": "nolleh", "say": "hello"}})
+	logger.SetFormatter(&caption_json_formatter.Formatter{CustomCaption: JO{"name": "nolleh", "say": "hello"}, Colorize: true})
 	return logger
 }
 
@@ -49,7 +48,7 @@ func NewLogger3() *logrus.Logger {
 	logger := logrus.New()
 	logger.Level = logrus.TraceLevel
 
-	logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true})
+	logger.SetFormatter(&caption_json_formatter.Formatter{PrettyPrint: true, Colorize: true})
 	return logger
 }
 

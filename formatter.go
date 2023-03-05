@@ -21,6 +21,7 @@ type Formatter struct {
 	// custom caption can be struct, string, whatever
 	CustomCaption interface{}
 	PrettyPrint   bool
+	Colorize      bool
 }
 
 func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
@@ -58,8 +59,10 @@ func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 		b.WriteString("] ")
 	}
 
-	levelColor := getColorByLevel(entry.Level)
-	_, _ = fmt.Fprintf(b, "\x1b[%dm", levelColor)
+	if f.Colorize {
+		levelColor := getColorByLevel(entry.Level)
+		_, _ = fmt.Fprintf(b, "\x1b[%dm", levelColor)
+	}
 
 	var data string
 	if f.PrettyPrint {
@@ -71,7 +74,9 @@ func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 	}
 
 	b.WriteString(data)
-	b.WriteString("\x1b[0m")
+	if f.Colorize {
+		b.WriteString("\x1b[0m")
+	}
 
 	b.WriteByte('\n')
 	return b.Bytes(), nil
