@@ -6,6 +6,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"reflect"
 )
+
 func Stringify(v interface{}) string {
 	var ret string
 	if IsObject(v) || isMap(v) {
@@ -32,7 +33,6 @@ func marshal(o interface{}) string {
 	return string(data)
 }
 
-
 func marshalIndent(o interface{}) string {
 	str, ok := o.(string)
 	if ok {
@@ -44,7 +44,6 @@ func marshalIndent(o interface{}) string {
 	}
 	return string(m)
 }
-
 
 func isMap(v interface{}) bool {
 	_, isMap := v.(map[string]interface{})

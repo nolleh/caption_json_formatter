@@ -11,24 +11,24 @@ import (
 
 type RootFields struct {
 	Timestamp string
-	Func   string
-	Level  logrus.Level
-	Fields interface{}
+	Func      string
+	Level     logrus.Level
+	Fields    interface{}
 }
 
 type Formatter struct {
 	CustomCaptionPrettyPrint bool
 	// custom caption can be struct, string, whatever
 	CustomCaption interface{}
-	PrettyPrint bool
+	PrettyPrint   bool
 }
 
 func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 	b := &bytes.Buffer{}
 
-	root := RootFields{ Timestamp: entry.Time.Format(time.RFC3339Nano), Level: entry.Level,
+	root := RootFields{Timestamp: entry.Time.Format(time.RFC3339Nano), Level: entry.Level,
 		//CustomCaption: entry.CustomCaption, // not possible in logrus...
-		Fields: encode(entry.Message) }
+		Fields: encode(entry.Message)}
 
 	b.WriteString(root.Timestamp)
 
@@ -46,7 +46,7 @@ func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 	//}
 
 	if f.CustomCaption != nil {
-		
+
 		b.WriteString("[")
 		captionStr := ""
 		if f.CustomCaptionPrettyPrint {
@@ -104,6 +104,7 @@ func encodeForJsonString(message string) map[string]interface{} {
 	}
 	return inInterface
 }
+
 const (
 	colorRed      = 31
 	colorGreen    = 32
