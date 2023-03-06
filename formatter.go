@@ -55,9 +55,9 @@ func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 		if f.TransportToJson {
 			root = RootFields{
 				Fields: JO{
-					"TimeStamp": entry.Time.Format(time.RFC3339Nano),
-					"Level":     entry.Level,
-					"Message":   encode(entry.Message),
+					"time_stamp": entry.Time.Format(time.RFC3339Nano),
+					"level":      entry.Level,
+					"message":    encode(entry.Message),
 				},
 			}
 		} else {

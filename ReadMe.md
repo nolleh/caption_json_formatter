@@ -31,12 +31,12 @@ and also you can use this formatter for using simple json formatter (@since v0.2
    it printed as
    ```json
    {
-     "Level": "info",
-     "Message": {
+     "level": "info",
+     "message": {
        "request": { "method": "GET", "url": "/user/123456/balance" },
        "response": { "balance": 1000, "user": 123456 }
      },
-     "TimeStamp": "2023-03-05T18:16:47.165173+09:00"
+     "time_stamp": "2023-03-05T18:16:47.165173+09:00"
    }
    ```
 
