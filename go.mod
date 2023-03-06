@@ -1,12 +1,9 @@
 module github.com/nolleh/caption_json_formatter
 
-go 1.18
+go 1.23.0
 
-require github.com/sirupsen/logrus v1.4.2
+toolchain go1.24.1
 
-require (
-	github.com/konsorten/go-windows-terminal-sequences v1.0.1 // indirect
-	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad // indirect
-)
+require github.com/sirupsen/logrus v1.9.3
 
-replace github.com/nolleh/caption_json_formatter => ../caption_json_formatter
+require golang.org/x/sys v0.31.0 // indirect
