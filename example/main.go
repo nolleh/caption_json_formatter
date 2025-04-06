@@ -16,7 +16,7 @@ var (
 )
 
 type (
-	JO map[string]interface{}
+	JO map[string]any
 )
 
 func NewLogger() *logrus.Logger {
@@ -117,7 +117,7 @@ func main() {
 	Log().Trace("trace")
 
 	//  2020-01-20T18:08:12.8127822+09:00 [DEBUG] [{"name":"nolleh","say":"hello"}] {"key":"value"}
-	Log2().Debug(map[string]interface{}{"key": "value"})
+	Log2().Debug(map[string]string{"key": "value"})
 
 	// 2020-01-20T18:08:12.8127822+09:00 [INFO] [nollehLog] {
 	// "request": {

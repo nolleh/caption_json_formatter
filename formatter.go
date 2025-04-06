@@ -13,7 +13,7 @@ type RootFields struct {
 	Timestamp string
 	Func      string
 	Level     logrus.Level
-	Fields    interface{}
+	Fields    any
 }
 
 type Formatter struct {
@@ -25,7 +25,7 @@ type Formatter struct {
 	/** if enabled, CustomCaption will be marshaled to json */
 	CustomCaptionPrettyPrint bool
 	/** if has value, it attached right before message(object). custom caption can be struct, string, whatever */
-	CustomCaption interface{}
+	CustomCaption any
 	/** do PrettyPrint for message(object) */
 	PrettyPrint bool
 	/** if enabled, the message(object) will be colorized by predefined color code, along with logLevel */
@@ -43,7 +43,7 @@ func Json() *Formatter {
 }
 
 type (
-	JO map[string]interface{}
+	JO map[string]any
 )
 
 func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
@@ -135,7 +135,7 @@ func prettierCaller(file string, function string) string {
 	return "[" + fileDesc + ":" + funcDesc + "]"
 }
 
-func encode(message string) interface{} {
+func encode(message string) any {
 	if data := encodeForJsonString(message); data != nil {
 		return data
 	} else {
@@ -143,9 +143,9 @@ func encode(message string) interface{} {
 	}
 }
 
-func encodeForJsonString(message string) map[string]interface{} {
+func encodeForJsonString(message string) map[string]any {
 	// jsonstring
-	inInterface := make(map[string]interface{})
+	inInterface := make(map[string]any)
 	if err := json.Unmarshal([]byte(message), &inInterface); err != nil {
 		//fmt.Print("err !!!! " , err.Error())
 		return nil
